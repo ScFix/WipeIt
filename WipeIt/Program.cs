@@ -20,13 +20,21 @@ namespace WipeIt
 			int days = 0;
 
 			int.TryParse(args[2], out days);
+
+
 			if (days != 0)
 			{
-				days = days * -1;
+				if (days > 0)
+				{
+					days = days * -1;
+				}
+
 				DateTime threshold = DateTime.Now.AddDays(days);
 
 				var reddit = new Reddit(userName, password, true);
+
 				Console.WriteLine("Processing");
+
 				int processed, internalSkip, globalSkip = 0;
 				do
 				{
