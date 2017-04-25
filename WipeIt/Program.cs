@@ -17,9 +17,10 @@ namespace WipeIt
 		{
 			var userName = args[0];
 			var password = args[1];
-			int days = 0;
+			
 
-			int.TryParse(args[2], out days);
+			int.TryParse(args[2], out int days);
+			int.TryParse(args[3], out int IsDelete);
 			if (days != 0)
 			{
 				days = days * -1;
@@ -38,7 +39,14 @@ namespace WipeIt
 						if (comment.Created < threshold)
 						{
 							Console.WriteLine(comment.Created);
-							comment.Del();
+							if (IsDelete == 1)
+							{
+								comment.Del();
+							}
+							else
+							{
+								comment.EditText("I edited this to protect me. No data for you.");
+							}
 							processed++;
 						}
 						else
