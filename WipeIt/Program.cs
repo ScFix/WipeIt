@@ -23,11 +23,17 @@ namespace WipeIt
 			int.TryParse(args[3], out int IsDelete);
 			if (days != 0)
 			{
-				days = days * -1;
+				if (days > 0)
+				{
+					days = days * -1;
+				}
+
 				DateTime threshold = DateTime.Now.AddDays(days);
 
 				var reddit = new Reddit(userName, password, true);
+
 				Console.WriteLine("Processing");
+
 				int processed, internalSkip, globalSkip = 0;
 				do
 				{
